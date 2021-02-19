@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_normal"
+    android:animateLayoutChanges="true"
     tools:context=".LoginPage">
 
     <RelativeLayout
@@ -124,7 +125,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"/>
 
-
                 <RelativeLayout
                     android:id="@+id/rl_login_extra"
                     android:layout_width="match_parent"
@@ -134,6 +134,7 @@
                     android:layout_marginRight="20dp">
 
                     <Button
+                        android:id="@+id/btn_sign_up"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
@@ -145,6 +146,7 @@
                         android:text="Sign Up"/>
 
                     <Button
+                        android:id="@+id/btn_forget_password"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
@@ -159,7 +161,311 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
 
+                <TextView
+                    android:id="@+id/txt_sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign UP"
+                    android:textColor="@color/blue_normal"
+                    android:textAllCaps="true"
+                    android:layout_margin="10dp"
+                    android:textSize="30sp"/>
+
+                <LinearLayout
+                    android:id="@+id/input_user_sign_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/txt_sign_up">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/txt_username_sign_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Username"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_normal"
+                            android:layout_margin="10dp"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:id="@+id/input_username_sign_up"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/input_text_bg"
+                            android:textSize="15sp"
+                            android:textColor="@color/blue_normal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/txt_password_sign_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Password"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_normal"
+                            android:layout_margin="10dp"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:id="@+id/input_password_sign_up"
+                            android:inputType="textPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/input_text_bg"
+                            android:textSize="15sp"
+                            android:textColor="@color/blue_normal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/txt_confirm_pwd_sign_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Confirm Password"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_normal"
+                            android:layout_margin="10dp"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:id="@+id/input_confirm_pwd_sign_up"
+                            android:inputType="textPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/input_text_bg"
+                            android:textSize="15sp"
+                            android:textColor="@color/blue_normal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="1dp">
+                         <CheckBox
+                             android:id="@+id/cb_Sign_Up"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:text="Acepta Terminos y Condiciones"
+                             android:textColor="@color/blue_normal"
+                             android:textAllCaps="true"
+                             android:textSize="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_accept_sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/input_user_sign_up"
+                    android:text="Sign Up"
+                    android:paddingLeft="70sp"
+                    android:paddingRight="70sp"
+                    android:background="@drawable/btn_layer"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_sign_up_extra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <Button
+                        android:id="@+id/btn_back_sign_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_normal"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:background="@color/transparent"
+                        android:text="Back"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/forget_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt_forget_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign UP"
+                    android:textColor="@color/blue_normal"
+                    android:textAllCaps="true"
+                    android:layout_margin="10dp"
+                    android:textSize="30sp"/>
+
+                <LinearLayout
+                    android:id="@+id/input_user_forget_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/txt_forget_pwd">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/txt_username_forget_pwd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Username"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_normal"
+                            android:layout_margin="10dp"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:id="@+id/input_username_forget_pwd"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/input_text_bg"
+                            android:textSize="15sp"
+                            android:textColor="@color/blue_normal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/txt_password_forget_pwd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Password"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_normal"
+                            android:layout_margin="10dp"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:id="@+id/input_password_forget_pwd"
+                            android:inputType="textPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/input_text_bg"
+                            android:textSize="15sp"
+                            android:textColor="@color/blue_normal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/txt_confirm_pwd_forget_pwd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Confirm Password"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_normal"
+                            android:layout_margin="10dp"
+                            android:textSize="15sp"/>
+
+                        <EditText
+                            android:id="@+id/input_confirm_pwd_forget_pwd"
+                            android:inputType="textPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/input_text_bg"
+                            android:textSize="15sp"
+                            android:textColor="@color/blue_normal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_change_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/input_user_forget_pwd"
+                    android:text="Change Password"
+                    android:paddingLeft="70sp"
+                    android:paddingRight="70sp"
+                    android:background="@drawable/btn_layer"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_forget_pwd_extra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <Button
+                        android:id="@+id/btn_back_forget_pwd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_normal"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:background="@color/transparent"
+                        android:text="Back"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

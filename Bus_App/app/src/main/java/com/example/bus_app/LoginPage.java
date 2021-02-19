@@ -1,5 +1,6 @@
 package com.example.bus_app;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -84,6 +85,50 @@ public class LoginPage extends Fragment {
         splashIcon = (ImageView) view.findViewById(R.id.splash_icon);
         handler.postDelayed(runnable, 2000);
 
+        ((Button)view.findViewById(R.id.btn_forget_password)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeRelativeLayout(((RelativeLayout)view.findViewById(R.id.forget_password)), ((RelativeLayout)view.findViewById(R.id.sign_up)), ((RelativeLayout)view.findViewById(R.id.login)));
+            }
+        });
+
+        ((Button)view.findViewById(R.id.btn_sign_up)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeRelativeLayout(((RelativeLayout)view.findViewById(R.id.sign_up)), ((RelativeLayout)view.findViewById(R.id.login)), ((RelativeLayout)view.findViewById(R.id.forget_password)));
+            }
+        });
+
+        ((Button)view.findViewById(R.id.btn_back_sign_up)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeRelativeLayout(((RelativeLayout)view.findViewById(R.id.login)), ((RelativeLayout)view.findViewById(R.id.forget_password)), ((RelativeLayout)view.findViewById(R.id.sign_up)));
+            }
+        });
+
+        ((Button)view.findViewById(R.id.btn_back_forget_pwd)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeRelativeLayout(((RelativeLayout)view.findViewById(R.id.login)), ((RelativeLayout)view.findViewById(R.id.forget_password)), ((RelativeLayout)view.findViewById(R.id.sign_up)));
+            }
+        });
+
+        ((Button)view.findViewById(R.id.btn_change_pwd)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeRelativeLayout(((RelativeLayout)view.findViewById(R.id.login)), ((RelativeLayout)view.findViewById(R.id.forget_password)), ((RelativeLayout)view.findViewById(R.id.sign_up)));
+            }
+        });
+
+        ((Button)view.findViewById(R.id.btn_accept_sign_up)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HomePage home = new HomePage();
+                getFragmentManager().beginTransaction().replace(R.id.splash_frame_container, home, home.getTag()).commit();
+                nav.setVisibility(View.VISIBLE);
+            }
+        });
+
         ((Button)view.findViewById(R.id.btn_login)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,5 +137,11 @@ public class LoginPage extends Fragment {
                 nav.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    private void ChangeRelativeLayout(RelativeLayout visible, RelativeLayout gone_1, RelativeLayout gone_2){
+        visible.setVisibility(View.VISIBLE);
+        gone_1.setVisibility(View.GONE);
+        gone_2.setVisibility(View.GONE);
     }
 }
