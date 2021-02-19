@@ -68,14 +68,14 @@ public class HomePage extends Fragment {
             @Override
             public void onClick(View v) {
                 PayPage pay = new PayPage();
-                getFragmentManager().beginTransaction().replace(R.id.frame_container, pay, pay.getTag()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.splash_frame_container, pay, pay.getTag()).commit();
             }
         });
         ((Button)v.findViewById(R.id.btnRecharge)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RechargePage recharge = new RechargePage();
-                getFragmentManager().beginTransaction().replace(R.id.frame_container, recharge, recharge.getTag()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.splash_frame_container, recharge, recharge.getTag()).commit();
             }
         });
         return v;

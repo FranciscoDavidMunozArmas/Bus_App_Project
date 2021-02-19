@@ -7,22 +7,27 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity{
+
     private HomePage home;
     private MapPage map;
     private PayPage pay;
     private HistoryPage history;
     private RechargePage recharge;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,15 +35,7 @@ public class MainActivity extends AppCompatActivity{
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
         nav.setOnNavigationItemSelectedListener(navItemSelected);
         init();
-        loadFragment(home);
-    }
-
-    private void init(){
-        home = new HomePage();
-        map = new MapPage();
-        pay = new PayPage();
-        history = new HistoryPage();
-        recharge = new RechargePage();
+        loadFragment(new LoginPage(nav));
     }
 
     private void hide_status(){
@@ -49,6 +46,14 @@ public class MainActivity extends AppCompatActivity{
 
     private void loadFragment(Fragment fragment){
         ControllerLoad.loadFragment(fragment, this);
+    }
+
+    private void init(){
+        home = new HomePage();
+        map = new MapPage();
+        pay = new PayPage();
+        history = new HistoryPage();
+        recharge = new RechargePage();
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navItemSelected =  new BottomNavigationView.OnNavigationItemSelectedListener() {
