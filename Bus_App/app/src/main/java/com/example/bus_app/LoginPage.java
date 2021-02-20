@@ -13,8 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -44,15 +47,6 @@ public class LoginPage extends Fragment {
         this.nav = nav;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginPage.
-     */
-    // TODO: Rename and change types and number of parameters
     public static LoginPage newInstance(String param1, String param2) {
         LoginPage fragment = new LoginPage();
         Bundle args = new Bundle();
@@ -116,25 +110,80 @@ public class LoginPage extends Fragment {
         ((Button)view.findViewById(R.id.btn_change_pwd)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeRelativeLayout(((RelativeLayout)view.findViewById(R.id.login)), ((RelativeLayout)view.findViewById(R.id.forget_password)), ((RelativeLayout)view.findViewById(R.id.sign_up)));
+                ((TextView)view.findViewById(R.id.forget_pwd_username_error)).setVisibility(View.GONE);
+                ((TextView)view.findViewById(R.id.forget_pwd_pwd_error)).setVisibility(View.GONE);
+                ((TextView)view.findViewById(R.id.forget_pwd_confirm_pwd_error)).setVisibility(View.GONE);
+                if(!checkInput(((EditText)view.findViewById(R.id.forget_pwd_username_input)).getText().toString()) &&
+                        !checkInput(((EditText)view.findViewById(R.id.forget_pwd_pwd_input)).getText().toString()) &&
+                        !checkInput(((EditText)view.findViewById(R.id.forget_pwd_confirm_pwd_input)).getText().toString()) &&
+                        ((EditText)view.findViewById(R.id.forget_pwd_pwd_input)).getText().toString().equals(((EditText)view.findViewById(R.id.forget_pwd_confirm_pwd_input)).getText().toString())){
+                    ChangeRelativeLayout(((RelativeLayout)view.findViewById(R.id.login)), ((RelativeLayout)view.findViewById(R.id.forget_password)), ((RelativeLayout)view.findViewById(R.id.sign_up)));
+                }
+
+                if(checkInput(((EditText)view.findViewById(R.id.forget_pwd_username_input)).getText().toString())){
+                    ((TextView)view.findViewById(R.id.forget_pwd_username_error)).setVisibility(View.VISIBLE);
+                }
+                if(checkInput(((EditText)view.findViewById(R.id.forget_pwd_pwd_input)).getText().toString())){
+                    ((TextView)view.findViewById(R.id.forget_pwd_pwd_error)).setVisibility(View.VISIBLE);
+                }
+                if(checkInput(((EditText)view.findViewById(R.id.forget_pwd_confirm_pwd_input)).getText().toString()) ||
+                        !((EditText)view.findViewById(R.id.forget_pwd_pwd_input)).getText().toString().equals(((EditText)view.findViewById(R.id.forget_pwd_confirm_pwd_input)).getText().toString())){
+                    ((TextView)view.findViewById(R.id.forget_pwd_confirm_pwd_error)).setVisibility(View.VISIBLE);
+                }
             }
         });
 
         ((Button)view.findViewById(R.id.btn_accept_sign_up)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomePage home = new HomePage();
-                getFragmentManager().beginTransaction().replace(R.id.splash_frame_container, home, home.getTag()).commit();
-                nav.setVisibility(View.VISIBLE);
+                ((TextView)view.findViewById(R.id.sign_up_txt_username_error)).setVisibility(View.GONE);
+                ((TextView)view.findViewById(R.id.sign_up_txt_pwd_error)).setVisibility(View.GONE);
+                ((TextView)view.findViewById(R.id.sign_up_txt_confirm_pwd_error)).setVisibility(View.GONE);
+                ((TextView)view.findViewById(R.id.sign_up_cb_error)).setVisibility(View.GONE);
+                if(!checkInput(((EditText)view.findViewById(R.id.sign_up_username_input)).getText().toString()) &&
+                        !checkInput(((EditText)view.findViewById(R.id.sign_up_pwd_input)).getText().toString()) &&
+                        !checkInput(((EditText)view.findViewById(R.id.sign_up_confirm_pwd_input)).getText().toString()) &&
+                        ((EditText)view.findViewById(R.id.sign_up_confirm_pwd_input)).getText().toString().equals(((EditText)view.findViewById(R.id.sign_up_pwd_input)).getText().toString()) &&
+                        ((CheckBox)view.findViewById(R.id.sign_up_cb)).isChecked()){
+                    HomePage home = new HomePage();
+                    getFragmentManager().beginTransaction().replace(R.id.splash_frame_container, home, home.getTag()).commit();
+                    nav.setVisibility(View.VISIBLE);
+                }
+
+                if(checkInput(((EditText)view.findViewById(R.id.sign_up_username_input)).getText().toString())){
+                    ((TextView)view.findViewById(R.id.sign_up_txt_username_error)).setVisibility(View.VISIBLE);
+                }
+                if(checkInput(((EditText)view.findViewById(R.id.sign_up_pwd_input)).getText().toString())){
+                    ((TextView)view.findViewById(R.id.sign_up_txt_pwd_error)).setVisibility(View.VISIBLE);
+                }
+                if(checkInput(((EditText)view.findViewById(R.id.sign_up_confirm_pwd_input)).getText().toString()) ||
+                        !((EditText)view.findViewById(R.id.sign_up_confirm_pwd_input)).getText().toString().equals(((EditText)view.findViewById(R.id.sign_up_pwd_input)).getText().toString())){
+                    ((TextView)view.findViewById(R.id.sign_up_txt_confirm_pwd_error)).setVisibility(View.VISIBLE);
+                }
+                if(!((CheckBox)view.findViewById(R.id.sign_up_cb)).isChecked()){
+                    ((TextView)view.findViewById(R.id.sign_up_cb_error)).setVisibility(View.VISIBLE);
+                }
             }
         });
 
         ((Button)view.findViewById(R.id.btn_login)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomePage home = new HomePage();
-                getFragmentManager().beginTransaction().replace(R.id.splash_frame_container, home, home.getTag()).commit();
-                nav.setVisibility(View.VISIBLE);
+                ((TextView)view.findViewById(R.id.login_txt_username_error)).setVisibility(View.GONE);
+                ((TextView)view.findViewById(R.id.login_txt_password_error)).setVisibility(View.GONE);
+                if(!checkInput(((EditText)view.findViewById(R.id.login_pwd_input)).getText().toString()) &&
+                        !checkInput(((EditText)view.findViewById(R.id.login_username_input)).getText().toString())){
+                    HomePage home = new HomePage();
+                    getFragmentManager().beginTransaction().replace(R.id.splash_frame_container, home, home.getTag()).commit();
+                    nav.setVisibility(View.VISIBLE);
+                }
+
+                if(checkInput(((EditText)view.findViewById(R.id.login_username_input)).getText().toString())){
+                    ((TextView)view.findViewById(R.id.login_txt_username_error)).setVisibility(View.VISIBLE);
+                }
+                if(checkInput(((EditText)view.findViewById(R.id.login_pwd_input)).getText().toString())){
+                    ((TextView)view.findViewById(R.id.login_txt_password_error)).setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -143,5 +192,27 @@ public class LoginPage extends Fragment {
         visible.setVisibility(View.VISIBLE);
         gone_1.setVisibility(View.GONE);
         gone_2.setVisibility(View.GONE);
+    }
+
+    private boolean hasBlank(String str){
+        for (int i = 0; i < str.length(); i++){
+            if(str.charAt(i) == ' '){
+                return true;
+            }
+        }
+        return false;
+    }
+    private boolean isBlank(String str){
+        int blank = 0;
+        for (int i = 0; i < str.length(); i++){
+            if(str.charAt(i) == ' '){
+                blank++;
+            }
+        }
+        return (blank == str.length())?true : false;
+    }
+
+    private boolean checkInput(String str){
+        return (str.isEmpty() || hasBlank(str) || isBlank(str));
     }
 }

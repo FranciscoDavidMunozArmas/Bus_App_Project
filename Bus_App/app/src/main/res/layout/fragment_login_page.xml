@@ -71,7 +71,7 @@
                             android:textSize="15sp"/>
 
                         <EditText
-                            android:id="@+id/input_username"
+                            android:id="@+id/login_username_input"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/input_text_bg"
@@ -79,6 +79,18 @@
                             android:textColor="@color/blue_normal"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"/>
+
+                        <TextView
+                            android:id="@+id/login_txt_username_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wrong username"
+                            android:textAllCaps="true"
+                            android:textColor="@color/red"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="10sp"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 
@@ -99,7 +111,7 @@
                             android:textSize="15sp"/>
 
                         <EditText
-                            android:id="@+id/input_password"
+                            android:id="@+id/login_pwd_input"
                             android:inputType="textPassword"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
@@ -108,6 +120,18 @@
                             android:textColor="@color/blue_normal"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"/>
+
+                        <TextView
+                            android:id="@+id/login_txt_password_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wrong password"
+                            android:textAllCaps="true"
+                            android:textColor="@color/red"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="10sp"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 
@@ -188,7 +212,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_margin="5dp">
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp">
 
                         <TextView
                             android:id="@+id/txt_username_sign_up"
@@ -201,7 +227,7 @@
                             android:textSize="15sp"/>
 
                         <EditText
-                            android:id="@+id/input_username_sign_up"
+                            android:id="@+id/sign_up_username_input"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/input_text_bg"
@@ -210,13 +236,26 @@
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"/>
 
+                        <TextView
+                            android:id="@+id/sign_up_txt_username_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wrong username"
+                            android:textAllCaps="true"
+                            android:textColor="@color/red"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone"/>
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="0dp">
 
                         <TextView
                             android:id="@+id/txt_password_sign_up"
@@ -229,7 +268,7 @@
                             android:textSize="15sp"/>
 
                         <EditText
-                            android:id="@+id/input_password_sign_up"
+                            android:id="@+id/sign_up_pwd_input"
                             android:inputType="textPassword"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
@@ -239,13 +278,26 @@
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"/>
 
+                        <TextView
+                            android:id="@+id/sign_up_txt_pwd_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wrong password"
+                            android:textAllCaps="true"
+                            android:textColor="@color/red"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone"/>
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="0dp">
 
                         <TextView
                             android:id="@+id/txt_confirm_pwd_sign_up"
@@ -258,7 +310,7 @@
                             android:textSize="15sp"/>
 
                         <EditText
-                            android:id="@+id/input_confirm_pwd_sign_up"
+                            android:id="@+id/sign_up_confirm_pwd_input"
                             android:inputType="textPassword"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
@@ -268,6 +320,18 @@
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp" />
 
+                        <TextView
+                            android:id="@+id/sign_up_txt_confirm_pwd_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Password doesn't match"
+                            android:textAllCaps="true"
+                            android:textColor="@color/red"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone"/>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -276,13 +340,25 @@
                         android:orientation="vertical"
                         android:layout_margin="1dp">
                          <CheckBox
-                             android:id="@+id/cb_Sign_Up"
+                             android:id="@+id/sign_up_cb"
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
                              android:text="Acepta Terminos y Condiciones"
                              android:textColor="@color/blue_normal"
                              android:textAllCaps="true"
                              android:textSize="10dp"/>
+
+                        <TextView
+                            android:id="@+id/sign_up_cb_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Has no agree"
+                            android:textAllCaps="true"
+                            android:textColor="@color/red"
+                            android:textSize="10sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 
@@ -332,7 +408,7 @@
                     android:id="@+id/txt_forget_pwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sign UP"
+                    android:text="Forgot your password?"
                     android:textColor="@color/blue_normal"
                     android:textAllCaps="true"
                     android:layout_margin="10dp"
@@ -362,7 +438,7 @@
                             android:textSize="15sp"/>
 
                         <EditText
-                            android:id="@+id/input_username_forget_pwd"
+                            android:id="@+id/forget_pwd_username_input"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="@drawable/input_text_bg"
@@ -370,6 +446,18 @@
                             android:textColor="@color/blue_normal"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"/>
+
+                        <TextView
+                            android:id="@+id/forget_pwd_username_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wrong username"
+                            android:textAllCaps="true"
+                            android:textColor="@color/red"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="10sp"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 
@@ -390,7 +478,7 @@
                             android:textSize="15sp"/>
 
                         <EditText
-                            android:id="@+id/input_password_forget_pwd"
+                            android:id="@+id/forget_pwd_pwd_input"
                             android:inputType="textPassword"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
@@ -399,6 +487,18 @@
                             android:textColor="@color/blue_normal"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"/>
+
+                        <TextView
+                            android:id="@+id/forget_pwd_pwd_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wrong password"
+                            android:textAllCaps="true"
+                            android:textColor="@color/red"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="10sp"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 
@@ -419,7 +519,7 @@
                             android:textSize="15sp"/>
 
                         <EditText
-                            android:id="@+id/input_confirm_pwd_forget_pwd"
+                            android:id="@+id/forget_pwd_confirm_pwd_input"
                             android:inputType="textPassword"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
@@ -428,6 +528,18 @@
                             android:textColor="@color/blue_normal"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp" />
+
+                        <TextView
+                            android:id="@+id/forget_pwd_confirm_pwd_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Password doesn't match"
+                            android:textAllCaps="true"
+                            android:textColor="@color/red"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="10sp"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 
