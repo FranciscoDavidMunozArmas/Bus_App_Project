@@ -1,24 +1,14 @@
 package com.example.bus_app;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.WindowManager;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -64,7 +54,6 @@ public class MainActivity extends AppCompatActivity{
                     loadFragment(home);
                     return true;
                 case R.id.map_element_menu:
-                    loadFragment(map);
                     return true;
                 case R.id.history_element_menu:
                     loadFragment(history);
