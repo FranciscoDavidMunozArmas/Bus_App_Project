@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class=".databinding.login.SignupBinding">
+        <variable
+            name="signupVM"
+            type="com.example.bus_app.viewmodel.SignUpVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.SignUp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="40dp">
+
+            <TextView
+                android:id="@+id/sign_up_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textAppearance="@style/title"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="68dp"
+                android:layout_marginBottom="68dp"
+                android:gravity="center_horizontal|center_vertical" />
+
+            <LinearLayout
+                android:id="@+id/input_user_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/sign_up_text">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/sign_up_txt_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Username"
+                        android:textAllCaps="true"
+                        android:textColor="@color/blue_normal"
+                        android:layout_margin="5dp"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/sign_up_username_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/base_input_txt"
+                        android:text="@={signupVM.username}"
+                        android:textSize="15dp"
+                        android:textColor="@color/blue_normal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:hint="@string/hint_username"/>
+
+                    <TextView
+                        android:id="@+id/sign_up_txt_username_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{signupVM.user_msg}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/red"
+                        android:textSize="10sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/sign_up_txt_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Password"
+                        android:textAllCaps="true"
+                        android:textColor="@color/blue_normal"
+                        android:layout_margin="10dp"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/sign_up_input_password"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/base_input_txt"
+                        android:text="@={signupVM.password}"
+                        android:textSize="15dp"
+                        android:textColor="@color/blue_normal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:hint="@string/hint_password"/>
+
+                    <TextView
+                        android:id="@+id/sign_up_txt_pwd_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{signupVM.pass_msg}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/red"
+                        android:textSize="10sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/sign_up_txt_confirm_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Confirm Password"
+                        android:textAllCaps="true"
+                        android:textColor="@color/blue_normal"
+                        android:layout_margin="10dp"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/sign_up_input_confirm_password"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/base_input_txt"
+                        android:text="@={signupVM.confirm_password}"
+                        android:textSize="15dp"
+                        android:textColor="@color/blue_normal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:hint="@string/hint_confirm_password"/>
+
+                    <TextView
+                        android:id="@+id/sign_up_txt_confirm_password_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{signupVM.conf_pass_msg}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/red"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <CheckBox
+                        android:id="@+id/sign_up_check_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Acepta Terminos y Condiciones"
+                        android:textColor="@color/blue_normal"
+                        android:textAllCaps="true"
+                        android:textSize="10dp"
+                        android:checked="@={signupVM.agree}"/>
+
+                    <TextView
+                        android:id="@+id/sign_up_cb_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{signupVM.agree_msg}"
+                        android:textAllCaps="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/red"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/sign_up_btn_sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/input_user_sign_up"
+                android:text="Sign Up"
+                android:paddingLeft="70sp"
+                android:paddingRight="70sp"
+                android:background="@drawable/base_btn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:onClick="@{() -> signupVM.CheckUser()}"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_sign_up_extra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <Button
+                    android:id="@+id/sign_up_btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:background="@color/transparent"
+                    android:text="Back"
+                    android:drawableLeft="@drawable/ic_back_arrow"
+                    android:textColor="@color/blue_normal"
+                    android:drawableTint="@color/blue_normal"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

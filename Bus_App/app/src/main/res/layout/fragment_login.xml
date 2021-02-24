@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data class=".databinding.login.LoginBinding">
+        <variable
+            name="loginVM"
+            type="com.example.bus_app.viewmodel.LoginVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/log_in"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.LogIn"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="40dp">
+
+            <TextView
+                android:id="@+id/log_in_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Log In"
+                android:textAppearance="@style/title"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="68dp"
+                android:layout_marginBottom="68dp"
+                android:gravity="center_horizontal|center_vertical" />
+
+            <LinearLayout
+                android:id="@+id/input_user_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/log_in_text">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/log_in_txt_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Username"
+                        android:textAllCaps="true"
+                        android:textColor="@color/blue_normal"
+                        android:layout_margin="5dp"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/log_in_username_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/base_input_txt"
+                        android:text="@={loginVM.username}"
+                        android:textSize="15dp"
+                        android:textColor="@color/blue_normal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:hint="@string/hint_username"/>
+
+                    <TextView
+                        android:id="@+id/log_in_txt_username_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{loginVM.user_msg}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/red"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/log_in_txt_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Password"
+                        android:textAllCaps="true"
+                        android:textColor="@color/blue_normal"
+                        android:layout_margin="10dp"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/log_in_input_password"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/base_input_txt"
+                        android:text="@={loginVM.password}"
+                        android:textSize="15dp"
+                        android:textColor="@color/blue_normal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:hint="@string/hint_password"/>
+
+                    <TextView
+                        android:id="@+id/log_in_txt_password_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{loginVM.pass_msg}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/red"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Keep login"
+                    android:textColor="@color/blue_normal"
+                    android:checked="@={loginVM.keep_login}"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/log_in_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/input_user_login"
+                android:text="Log In"
+                android:paddingLeft="70sp"
+                android:paddingRight="70sp"
+                android:background="@drawable/base_btn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:onClick="@{() -> loginVM.CheckUser()}"/>
+
+            <RelativeLayout
+                android:id="@+id/log_in_btn_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <Button
+                    android:id="@+id/log_in_btn_sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/blue_normal"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:text="Sign Up"/>
+
+                <Button
+                    android:id="@+id/log_in_btn_fpassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/blue_normal"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:text="Forgot Password?"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

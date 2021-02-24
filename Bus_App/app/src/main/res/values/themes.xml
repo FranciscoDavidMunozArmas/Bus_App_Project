@@ -16,8 +16,15 @@
     </style>
 
     <style name="BottomBar">
-        <item name="android:background">@color/blue_normal</item>
+        <item name="android:background">@color/white</item>
         <item name="itemIconTint">@color/blue_lightness</item>
         <item name="itemTextColor">@color/blue_lightness</item>
+    </style>
+
+    <style name="title">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/blue_normal</item>
+        <item name="android:textFontWeight">100</item>
+
     </style>
 </resources>

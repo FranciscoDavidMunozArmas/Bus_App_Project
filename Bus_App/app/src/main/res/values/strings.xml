@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">Bus_App</string>
+    <string name="app_name">Bus App</string>
+    <string name="hint_email">example@email.com</string>
+    <string name="hint_username">username</string>
+    <string name="hint_password">password</string>
+    <string name="hint_confirm_password">confirm your password</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
