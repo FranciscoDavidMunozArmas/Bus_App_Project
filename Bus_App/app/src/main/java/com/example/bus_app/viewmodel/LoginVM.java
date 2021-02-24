@@ -37,6 +37,7 @@ public class LoginVM extends ViewModel {
         pass_msg = new MutableLiveData<>();
         start_activity = new MutableLiveData<>();
         keep_login = new MutableLiveData<>();
+        keep_login.setValue(false);
     }
 
     public LiveData<Boolean> getStart(){
@@ -142,8 +143,8 @@ public class LoginVM extends ViewModel {
                     AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
                     return;
                 }
-                this.start_activity.setValue(true);
             }
+            this.start_activity.setValue(true);
         } else {
             if(TextUtils.isEmpty(this.username.getValue())){
                 this.user_msg.setValue("Invalid User");
