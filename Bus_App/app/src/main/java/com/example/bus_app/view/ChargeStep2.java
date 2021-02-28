@@ -79,7 +79,17 @@ public class ChargeStep2 extends Fragment {
                 trans.commit();
             }
         });
-
+        Button back = (Button) view.findViewById(R.id.charge_btn_back2);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction trans = getFragmentManager().beginTransaction();
+                trans.replace(R.id.charge_container, new ChargeStep1());
+                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                trans.addToBackStack(null);
+                trans.commit();
+            }
+        });
         return view;
     }
 }

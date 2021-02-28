@@ -29,11 +29,12 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginBottom="0dp"
                     android:text="Recarga"
                     android:textAllCaps="true"
                     android:textColor="@color/blue_dark"
@@ -61,7 +62,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="582dp"
+                android:layout_height="519dp"
                 android:layout_centerInParent="true"
                 android:gravity="center">
 
@@ -74,7 +75,22 @@
                     android:textAlignment="center"
                     android:textSize="18sp" />
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <Button
+                    android:id="@+id/button_finish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="72dp"
+                    android:background="@drawable/base_btn"
+                    android:text="Finalizar" />
+            </RelativeLayout>
 
         </LinearLayout>
 
