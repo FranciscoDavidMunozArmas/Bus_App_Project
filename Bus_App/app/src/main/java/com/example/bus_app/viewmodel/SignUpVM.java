@@ -146,4 +146,8 @@ public class SignUpVM extends LoginVM {
          }
         return false;
     }
+
+    public void no_available(){
+        AlertDialogHelper.MsgBack(getActivity(), "Lo sentimos", "Servicio no disponible por el momento");
+    }
 }
