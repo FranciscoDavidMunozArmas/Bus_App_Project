@@ -19,4 +19,7 @@
     <color name="blue_dark">#145297</color>
     <color name="blue_darkness">#0A4E</color>
 
+    <color name="colorPrimary">#607D8B</color>
+    <color name="colorPrimaryDark">#455A64</color>
+    <color name="colorAccent">#4CAF50</color>
 </resources>
