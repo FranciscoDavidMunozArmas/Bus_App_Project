@@ -6,7 +6,6 @@
     <string name="hint_confirm_password">Confirme su contraseña</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<<<<<<< HEAD
     <string name="username">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="confirm_password">Confirme Contraseña</string>
@@ -24,7 +23,6 @@
     <string name="history">Historial</string>
     <string name="payment">Pago</string>
     <string name="recharge">Recarga</string>
-=======
     <string name="title_activity_charge">ChargeActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -34,5 +32,4 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
->>>>>>> d7ff6f1ef29b30e73dd0750b960ff31b037a3a93
 </resources>
