@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bus_app.ui.AlertDialogHelper;
+import com.example.bus_app.ui.ErrorMsg;
 import com.example.bus_app.util.services.LoginSQL;
 import com.example.bus_app.util.services.UserSQL;
 import com.example.bus_app.util.table.LoginTable;
@@ -89,30 +90,30 @@ public class SignUpVM extends LoginVM {
                     db_log.insert(LoginTable.TABLE_NAME, null, values_log);
                     db_log.close();
                 }catch (Exception e){
-                    AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
+                    AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
                     return;
                 }
                 db.close();
                 this.start_activity.setValue(true);
             }catch (Exception e){
-                AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
+                AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
             }
         } else {
             if (TextUtils.isEmpty(this.username.getValue())) {
-                this.user_msg.setValue("Invalid User");
+                this.user_msg.setValue(ErrorMsg.USER_ERROR_MSG);
             }
             if (TextUtils.isEmpty(this.password.getValue())) {
-                this.pass_msg.setValue("Invalid Password");
+                this.pass_msg.setValue(ErrorMsg.PSW_ERROR_MSG);
             }
             if (!TextUtils.isEmpty(this.confirm_password.getValue())) {
                 if(!this.password.getValue().equals(this.confirm_password.getValue())){
-                    this.conf_pass_msg.setValue("Password don't match");
+                    this.conf_pass_msg.setValue(ErrorMsg.PSW_DONT_MATCH);
                 }
             } else {
-                this.conf_pass_msg.setValue("Password don't match");
+                this.conf_pass_msg.setValue(ErrorMsg.PSW_DONT_MATCH);
             }
             if (!this.agree.getValue().booleanValue()) {
-                agree_msg.setValue("You doesn't check");
+                agree_msg.setValue(ErrorMsg.CHECK_MSG);
             }
         }
     }
@@ -136,18 +137,18 @@ public class SignUpVM extends LoginVM {
                      cursor.close();
                      return true;
                  }
-                 AlertDialogHelper.MsgBack(activity, "Error", "The user already exists");
-                 this.user_msg.setValue("The user already exists");
+                 AlertDialogHelper.MsgBack(activity, ErrorMsg.ERROR_TITLE, ErrorMsg.USER_ALREADY_EXISTS);
+                 this.user_msg.setValue(ErrorMsg.USER_ALREADY_EXISTS);
                  db.close();
                  cursor.close();
              }catch (Exception e){
-                 AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
+                 AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
              }
          }
         return false;
     }
 
     public void no_available(){
-        AlertDialogHelper.MsgBack(getActivity(), "Lo sentimos", "Servicio no disponible por el momento");
+        AlertDialogHelper.MsgBack(getActivity(), ErrorMsg.SORRY_TITLE, ErrorMsg.NOT_AVAILABLE_SERVICE);
     }
 }

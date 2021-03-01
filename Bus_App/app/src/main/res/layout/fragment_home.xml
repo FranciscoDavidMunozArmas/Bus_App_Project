@@ -94,8 +94,8 @@
                             android:id="@+id/home_floating_cb_position"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textOn="Right"
-                            android:textOff="Left"
+                            android:textOn="@string/right_hand"
+                            android:textOff="@string/left_hand"
                             android:textSize="12dp"
                             android:layout_centerHorizontal="true"
                             android:background="@color/transparent"
@@ -121,7 +121,7 @@
                             android:id="@+id/home_btn_logout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Log out"
+                            android:text="@string/log_out"
                             android:background="@color/transparent"
                             android:textColor="@color/black"
                             android:drawableLeft="@drawable/ic_logout"
@@ -181,7 +181,7 @@
                             android:id="@+id/home_btn_pay"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Pago"
+                            android:text="@string/payment"
                             android:background="@drawable/base_btn"
                             android:layout_margin="10dp"/>
 
@@ -189,7 +189,7 @@
                             android:id="@+id/home_btn_charge"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Recarga"
+                            android:text="@string/recharge"
                             android:background="@drawable/base_btn"
                             android:layout_margin="10dp"/>
                     </LinearLayout>

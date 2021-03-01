@@ -66,7 +66,7 @@
                 android:id="@+id/log_in_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Log In"
+                android:text="@string/login"
                 android:textAppearance="@style/title"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="68dp"
@@ -91,7 +91,7 @@
                         android:id="@+id/log_in_txt_username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Username"
+                        android:text="@string/username"
                         android:textAllCaps="true"
                         android:textColor="@color/blue_normal"
                         android:layout_margin="5dp"
@@ -133,7 +133,7 @@
                         android:id="@+id/log_in_txt_password"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Password"
+                        android:text="@string/password"
                         android:textAllCaps="true"
                         android:textColor="@color/blue_normal"
                         android:layout_margin="10dp"
@@ -170,7 +170,7 @@
                 <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Keep login"
+                    android:text="@string/keep_login"
                     android:textColor="@color/blue_normal"
                     android:checked="@={loginVM.keep_login}"/>
 
@@ -181,7 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/input_user_login"
-                android:text="Log In"
+                android:text="@string/login"
                 android:paddingLeft="70sp"
                 android:paddingRight="70sp"
                 android:background="@drawable/base_btn"
@@ -205,19 +205,21 @@
                     android:textColor="@color/blue_normal"
                     android:textSize="10sp"
                     android:textStyle="bold"
-                    android:text="Sign Up"/>
+                    android:text="@string/sign_up"/>
 
                 <Button
                     android:id="@+id/log_in_btn_fpassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/transparent"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/transparent"
+                    android:text="@string/forget_password"
                     android:textColor="@color/blue_normal"
                     android:textSize="10sp"
-                    android:textStyle="bold"
-                    android:text="Forgot Password?"/>
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
