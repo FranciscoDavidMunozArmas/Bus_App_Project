@@ -38,7 +38,6 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
 
         share = ViewModelProviders.of(requireActivity()).get(SharedVM.class);
-        share.setStr("Hello");
 
         // Inflate the layout for this fragment
         HomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
@@ -51,6 +50,8 @@ public class Home extends Fragment {
 
         System.out.println(getActivity().getIntent().getExtras().get("id").toString());
         mViewModel.setId(getActivity().getIntent().getExtras().get("id").toString());
+
+        share.setBool(mViewModel.get_hand().getValue());
 
         ((Button) binding.getRoot().findViewById(R.id.home_btn_pay)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +86,7 @@ public class Home extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onChanged(Boolean bool) {
+                share.setBool(bool);
                 changeSide(((RelativeLayout)binding.getRoot().findViewById(R.id.home_floating_container_box)), bool);
                 changeSide(((FloatingActionButton)binding.getRoot().findViewById(R.id.home_floating_btn_settings)), bool);
                 changeSide(((RelativeLayout)binding.getRoot().findViewById(R.id.home_user_info)), !bool);

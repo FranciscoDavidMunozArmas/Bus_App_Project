@@ -1,15 +1,18 @@
 package com.example.bus_app.view;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.bus_app.R;
 import com.example.bus_app.ui.AlertDialogHelper;
 import com.example.bus_app.ui.PagesController;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,4 +57,6 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialogHelper.ExitBack(this);
     }
+
+
 }
