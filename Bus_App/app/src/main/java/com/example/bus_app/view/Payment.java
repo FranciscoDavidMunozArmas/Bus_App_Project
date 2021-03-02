@@ -23,12 +23,12 @@ public class Payment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        IntentIntegrator integrator = new IntentIntegrator(this);
+        /*IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setPrompt("Enfoca el codigo QR dentro del rectangulo");
 
         integrator.setOrientationLocked(false);
         integrator.setCaptureActivity(CaptureActivityPortrait.class);
-        integrator.initiateScan();
+        integrator.initiateScan();*/
 
 
         return inflater.inflate(R.layout.fragment_payment, container, false);

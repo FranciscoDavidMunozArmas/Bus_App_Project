@@ -12,13 +12,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bus_app.R;
 
 import java.util.List;
 
-public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.RegisterViewHolder> {
+/*public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.RegisterViewHolder> {
 
     List<Register> lst;
 
@@ -62,14 +63,15 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.Regist
             txtDate.setText(register.rdate);
         }
     }
-}
+}*/
 
-/*public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.RegisterViewHolder> {
+public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.RegisterViewHolder> {
 
     List<Register> lst;
     History history_Page;
-    public RegisterAdapter(List<Register> lst) {
+    public RegisterAdapter(List<Register> lst, History history) {
         this.lst = lst;
+        history_Page = history;
     }
 
     @Override
@@ -91,11 +93,13 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.Regist
         if(history_Page.isActionMode){
             Anim anim = new Anim(100, holder.linearLayout);
             anim.setDuration(300);
+            holder.linearLayout.setVisibility(View.VISIBLE);
             holder.linearLayout.setAnimation(anim);
         } else
         {
             Anim anim = new Anim(0, holder.linearLayout);
             anim.setDuration(300);
+            holder.linearLayout.setVisibility(View.GONE);
             holder.linearLayout.setAnimation(anim);
             holder.checkBox.setChecked(false);
         }
@@ -122,7 +126,7 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.Regist
     public class RegisterViewHolder extends RecyclerView.ViewHolder {
         TextView txtTransaction, txtAmount, txtDate;
         CheckBox checkBox;
-        LinearLayout linearLayout;
+        ConstraintLayout linearLayout;
         History history_Page;
         public RegisterViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -130,6 +134,7 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.Regist
             txtAmount = (TextView) itemView.findViewById(R.id.amount);
             txtDate = (TextView) itemView.findViewById(R.id.date);
             linearLayout = itemView.findViewById(R.id.linearLayout);
+            linearLayout.setVisibility(View.GONE);
             checkBox = itemView.findViewById(R.id.checkbox);
             this.history_Page = history_Page;
         }
@@ -165,4 +170,4 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.Regist
             return true;
         }
     }
-}*/
+}
