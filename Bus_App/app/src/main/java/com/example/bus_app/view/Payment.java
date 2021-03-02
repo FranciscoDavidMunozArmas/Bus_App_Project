@@ -1,4 +1,5 @@
 package com.example.bus_app.view;
+
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -33,25 +34,12 @@ public class Payment extends Fragment {
     }
 
 
-    /*protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-
-        String datos=result.getContents();
-        txt.setText(datos);
-
-    }
-*/
-//Ayuda, donde podria esta clase?
-    //Dentro del programa
-/*package com.example.lectorqr;
-
-import com.journeyapps.barcodescanner.CaptureActivity;
-
-    public class CaptureActivityPortrait extends CaptureActivity {
-    }*/
-
-
-}
-
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
 //
+//        String datos=result.getContents();
+//        txt.setText(datos);
+//
+//    }
+}
