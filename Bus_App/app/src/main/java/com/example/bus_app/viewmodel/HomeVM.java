@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.bus_app.model.User;
 import com.example.bus_app.ui.AlertDialogHelper;
+import com.example.bus_app.ui.ErrorMsg;
 import com.example.bus_app.util.services.LoginSQL;
 import com.example.bus_app.util.services.UserSQL;
 import com.example.bus_app.util.table.LoginTable;
@@ -72,7 +73,7 @@ public class HomeVM extends ViewModel {
             cursor.close();
         } catch (Exception e){
             System.out.println(e.toString());
-            AlertDialogHelper.MsgBack(activity, "Sorry","Something when wrong");
+            AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE,ErrorMsg.SORRY_MSG);
         }
 
     }
@@ -131,7 +132,7 @@ public class HomeVM extends ViewModel {
                 return;
             }
         }catch (Exception e){
-            AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
+            AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
         }
     }
 
@@ -141,9 +142,8 @@ public class HomeVM extends ViewModel {
             SQLiteDatabase db = (new LoginSQL(context)).getWritableDatabase();
             db.delete(LoginTable.TABLE_NAME, null, null);
             db.close();
-            System.out.println("Logged");
         }catch (Exception e){
-            AlertDialogHelper.MsgBack(activity, "Sorry","Something went wrong");
+            AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
             return;
         }
 

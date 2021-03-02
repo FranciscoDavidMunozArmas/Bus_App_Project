@@ -9,9 +9,9 @@ public class AlertDialogHelper {
 
     public static void ExitBack(Activity context){
         (new AlertDialog.Builder(context))
-                .setTitle("Closing this App")
-                .setMessage("Are you sure you want to close this app")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setTitle("Saliendo")
+                .setMessage("Esta seguro que quiere cerrar la aplicacion?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         context.finish();
@@ -25,7 +25,7 @@ public class AlertDialogHelper {
         (new AlertDialog.Builder(activity))
                 .setTitle(title)
                 .setMessage(msg)
-                .setPositiveButton("Yes", null)
+                .setPositiveButton("Ok", null)
                 .show();
     }
 

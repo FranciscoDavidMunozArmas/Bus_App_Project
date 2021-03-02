@@ -124,15 +124,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp">
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
 
             <EditText
-                android:id="@+id/editTextNumber2"
+                android:id="@+id/editTextNumber3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@color/transparent"
+                android:layout_height="match_parent"
                 android:ems="10"
                 android:hint="0000-0000-0000-0000"
                 android:inputType="number"
@@ -167,17 +166,16 @@
             android:layout_marginRight="16dp"
             android:orientation="horizontal">
 
-            <com.msa.dateedittext.DateEditText
-                android:id="@+id/dateEditTextExpiration"
-                android:layout_width="135dp"
+
+            <EditText
+                android:id="@+id/editTextNumber"
+                android:layout_width="127dp"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionNext"
-                android:maxLength="4"
-                app:autoCorrect="true"
-                app:dateFormat="MMyy"
-                app:dividerCharacter="minus"
-                app:maxDate="01-25"
-                app:minDate="01-99" />
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="mm/yy"
+                android:inputType="number"
+                android:maxLength="4" />
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/imageFilterView"
@@ -234,7 +232,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="237dp">
+            android:layout_height="212dp">
 
         </RelativeLayout>
 
@@ -247,7 +245,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="72dp"

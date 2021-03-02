@@ -1,11 +1,28 @@
 <resources>
     <string name="app_name">Bus App</string>
     <string name="hint_email">example@email.com</string>
-    <string name="hint_username">username</string>
-    <string name="hint_password">password</string>
-    <string name="hint_confirm_password">confirm your password</string>
+    <string name="hint_username">Usuario</string>
+    <string name="hint_password">Constraseña</string>
+    <string name="hint_confirm_password">Confirme su contraseña</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirme Contraseña</string>
+    <string name="login">Log in</string>
+    <string name="sign_up">Registro</string>
+    <string name="forget_password">¿Olvido la contraseña?</string>
+    <string name="change_password">Cambiar contraseña</string>
+    <string name="back">Atras</string>
+    <string name="keep_login">Permanecer conectado</string>
+    <string name="left_hand">Izquierda</string>
+    <string name="right_hand">Derecha</string>
+    <string name="log_out">Cerrar Sesion</string>
+    <string name="home">Inicio</string>
+    <string name="map">Mapa</string>
+    <string name="history">Historial</string>
+    <string name="payment">Pago</string>
+    <string name="recharge">Recarga</string>
     <string name="title_activity_charge">ChargeActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
