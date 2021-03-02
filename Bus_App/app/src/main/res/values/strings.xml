@@ -24,6 +24,8 @@
     <string name="payment">Pago</string>
     <string name="recharge">Recarga</string>
     <string name="title_activity_charge">ChargeActivity</string>
+    <string name="lines">Lineas</string>
+    <string name="bus_stop">Paradas</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -32,4 +34,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="map_key" translatable="false">AIzaSyAuxL5DRlhRxZQIyv7HfBEH6hEYEFnrG8A</string>
 </resources>

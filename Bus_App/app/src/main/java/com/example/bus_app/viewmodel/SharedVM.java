@@ -10,6 +10,7 @@ public class SharedVM extends ViewModel {
 
     private MutableLiveData<User> user;
     private MutableLiveData<String> str;
+    private MutableLiveData<Boolean> bool;
 
     public void setUser(User user) {
         if(this.user == null){
@@ -25,6 +26,13 @@ public class SharedVM extends ViewModel {
         this.str.setValue(str);
     }
 
+    public void setBool(boolean bool) {
+        if(this.bool == null){
+            this.bool = new MutableLiveData<Boolean>();
+        }
+        this.bool.setValue(bool);
+    }
+
     public LiveData<User> getUser(){
         if(user == null){
             user = new MutableLiveData<>();
@@ -37,5 +45,12 @@ public class SharedVM extends ViewModel {
             str = new MutableLiveData<>();
         }
         return str;
+    }
+
+    public LiveData<Boolean> getBool() {
+        if(this.bool == null){
+            this.bool = new MutableLiveData<Boolean>();
+        }
+        return bool;
     }
 }
