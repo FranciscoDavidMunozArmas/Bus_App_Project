@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.bus_app.R;
-import com.msa.dateedittext.DateEditText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +28,6 @@ public class ChargeStep2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private DateEditText editText;
     private View view;
 
     public ChargeStep2() {
