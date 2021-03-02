@@ -27,8 +27,6 @@ public class ChargeStep1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Fragment fstep1,fstep2;
-    private FragmentTransaction transaction;
 
     public ChargeStep1() {
         // Required empty public constructor
