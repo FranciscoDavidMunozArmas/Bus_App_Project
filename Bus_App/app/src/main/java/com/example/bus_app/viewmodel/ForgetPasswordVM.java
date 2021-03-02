@@ -10,8 +10,11 @@ import android.text.TextUtils;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.bus_app.ui.AlertDialogHelper;
+import com.example.bus_app.ui.ErrorMsg;
 import com.example.bus_app.util.services.UserSQL;
 import com.example.bus_app.util.table.UserTable;
+
+import static com.example.bus_app.ui.ErrorMsg.PSW_ERROR_MSG;
 
 public class ForgetPasswordVM extends LoginVM{
 
@@ -55,17 +58,17 @@ public class ForgetPasswordVM extends LoginVM{
             this.start_activity.setValue(true);
         } else {
             if(TextUtils.isEmpty(this.username.getValue())){
-                this.user_msg.setValue("Invalid User");
+                this.user_msg.setValue(ErrorMsg.USER_ERROR_MSG);
             }
             if(TextUtils.isEmpty(this.password.getValue())){
-                this.pass_msg.setValue("Invalid Password");
+                this.pass_msg.setValue(ErrorMsg.PSW_ERROR_MSG);
             }
             if (!TextUtils.isEmpty(this.confirm_password.getValue())) {
                 if(!this.password.getValue().equals(this.confirm_password.getValue())){
-                    this.conf_pass_msg.setValue("Password don't match");
+                    this.conf_pass_msg.setValue(ErrorMsg.PSW_DONT_MATCH);
                 }
             } else {
-                this.conf_pass_msg.setValue("Password don't match");
+                this.conf_pass_msg.setValue(ErrorMsg.PSW_DONT_MATCH);
             }
         }
     }
@@ -88,10 +91,10 @@ public class ForgetPasswordVM extends LoginVM{
                 if(count != 0){
                     return true;
                 }
-                AlertDialogHelper.MsgBack(activity, "Error", "The user doesn't exists");
-                this.user_msg.setValue("The user doesn't exists");
+                AlertDialogHelper.MsgBack(activity, ErrorMsg.ERROR_TITLE, ErrorMsg.USER_DOESNT_EXIST);
+                this.user_msg.setValue(ErrorMsg.USER_DOESNT_EXIST);
             }catch (Exception e){
-                AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
+                AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_MSG, ErrorMsg.SORRY_MSG);
             }
         }
         return false;

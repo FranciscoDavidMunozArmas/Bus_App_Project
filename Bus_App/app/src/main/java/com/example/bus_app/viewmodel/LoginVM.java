@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.bus_app.model.User;
 import com.example.bus_app.ui.AlertDialogHelper;
+import com.example.bus_app.ui.ErrorMsg;
 import com.example.bus_app.util.services.LoginSQL;
 import com.example.bus_app.util.services.UserSQL;
 import com.example.bus_app.util.table.LoginTable;
@@ -93,7 +94,7 @@ public class LoginVM extends ViewModel {
             cursor.close();
         }catch (Exception e){
             System.out.println(e.toString());
-            AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
+            AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_TITLE);
             return false;
         }
 
@@ -115,7 +116,7 @@ public class LoginVM extends ViewModel {
             db.close();
             cursor.close();
         }catch (Exception e){
-            AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
+            AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
             return false;
         }
         if(this.getId() == 0){
@@ -140,17 +141,17 @@ public class LoginVM extends ViewModel {
                     db.insert(LoginTable.TABLE_NAME, null, values);
                     db.close();
                 }catch (Exception e){
-                    AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
+                    AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
                     return;
                 }
             }
             this.start_activity.setValue(true);
         } else {
             if(TextUtils.isEmpty(this.username.getValue())){
-                this.user_msg.setValue("Invalid User");
+                this.user_msg.setValue(ErrorMsg.USER_ERROR_MSG);
             }
             if(TextUtils.isEmpty(this.password.getValue())){
-                this.pass_msg.setValue("Invalid Password");
+                this.pass_msg.setValue(ErrorMsg.PSW_ERROR_MSG);
             }
         }
     }
@@ -171,17 +172,17 @@ public class LoginVM extends ViewModel {
                      cursor.close();
                      return true;
                  }
-                 this.user_msg.setValue("The user doesn't exists");
+                 this.user_msg.setValue(ErrorMsg.USER_DOESNT_EXIST);
                  db.close();
                  cursor.close();
              }catch (Exception e){
-                 AlertDialogHelper.MsgBack(activity, "UPS", "Sorry, something went wrong");
+                 AlertDialogHelper.MsgBack(activity, ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
              }
          }
          return false;
     }
 
     public void no_available(){
-        AlertDialogHelper.MsgBack(getActivity(), "Lo sentimos", "Servicio no disponible por el momento");
+        AlertDialogHelper.MsgBack(getActivity(), ErrorMsg.SORRY_TITLE, ErrorMsg.NOT_AVAILABLE_SERVICE);
     }
 }
