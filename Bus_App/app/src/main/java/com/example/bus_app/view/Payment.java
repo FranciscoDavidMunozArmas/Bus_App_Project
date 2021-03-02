@@ -25,6 +25,7 @@ public class Payment extends Fragment {
                              Bundle savedInstanceState) {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setPrompt("Enfoca el codigo QR dentro del rectangulo");
+
         integrator.setOrientationLocked(false);
         integrator.setCaptureActivity(CaptureActivityPortrait.class);
         integrator.initiateScan();
