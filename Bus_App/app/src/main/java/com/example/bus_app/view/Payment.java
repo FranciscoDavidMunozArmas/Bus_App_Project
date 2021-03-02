@@ -19,6 +19,7 @@ public class Payment extends Fragment {
     }
 
     @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         IntentIntegrator integrator = new IntentIntegrator(this);
@@ -42,6 +43,7 @@ public class Payment extends Fragment {
     }
 */
 //Ayuda, donde podria esta clase?
+    //Dentro del programa
 /*package com.example.lectorqr;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
