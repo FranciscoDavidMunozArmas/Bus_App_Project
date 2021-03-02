@@ -29,9 +29,6 @@ public class ChargeStep2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private DateEditText editText;
-    private View view;
-
     public ChargeStep2() {
         // Required empty public constructor
     }
