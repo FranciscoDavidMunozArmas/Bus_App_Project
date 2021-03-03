@@ -21,7 +21,6 @@ public class Payment extends Fragment {
     }
 
     @Override
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         IntentIntegrator integrator = new IntentIntegrator(getActivity());
@@ -31,17 +30,7 @@ public class Payment extends Fragment {
         integrator.setCaptureActivity(CaptureActivityPortrait.class);
         integrator.initiateScan();
 
-
         return inflater.inflate(R.layout.fragment_payment, container, false);
     }
 
-
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-//
-//        String datos=result.getContents();
-//        txt.setText(datos);
-//
-//    }
 }
