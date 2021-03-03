@@ -92,6 +92,7 @@ public class History extends Fragment {
     TextView txtToolbar;
     ImageButton btnBack;
     ImageButton btnDelete;
+    ImageButton btnSelectAll;
     ArrayList<Register> lst = new ArrayList<>();
     TextView txtHistory;
     ArrayList<Register> selectionList = new ArrayList<>();
@@ -164,6 +165,9 @@ public class History extends Fragment {
         btnDelete = (ImageButton) vista.findViewById(R.id.btn_delete);
         btnDelete.setVisibility(View.GONE);
 
+        btnSelectAll = (ImageButton) vista.findViewById(R.id.btn_select_All);
+        btnSelectAll.setVisibility(View.GONE);
+
         recyclerViewRegistro.setLayoutManager(new LinearLayoutManager(getContext()));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerViewRegistro.getContext(),
                 DividerItemDecoration.VERTICAL);
@@ -179,7 +183,11 @@ public class History extends Fragment {
             public void onClick(View v) {
                 if(selectionList.size() > 0){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage("Está seguro que desea eliminar "+ selectionList.size() + " elementos?");
+                    if(selectionList.size() == 1){
+                        builder.setMessage("¿Está seguro que desea eliminar "+ selectionList.size() + " elemento?");
+                    } else{
+                        builder.setMessage("¿Está seguro que desea eliminar "+ selectionList.size() + " elementos?");
+                    }
                     builder.setTitle("Confirmar");
                     builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
                         @Override
@@ -202,6 +210,17 @@ public class History extends Fragment {
             }
         });
 
+        btnSelectAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectionList.clear();
+                selectionList.addAll(lst);
+                counter = selectionList.size();
+                updateToolBarText(counter);
+
+            }
+        });
+
         return vista;
     }
 
@@ -211,6 +230,7 @@ public class History extends Fragment {
         txtToolbar.setText("0 elementos seleccionados");
         btnBack.setVisibility(View.GONE);
         btnDelete.setVisibility(View.GONE);
+        btnSelectAll.setVisibility(View.GONE);
         txtHistory.setVisibility(View.VISIBLE);
         counter = 0;
         selectionList.clear();
@@ -230,9 +250,9 @@ public class History extends Fragment {
             txtToolbar.setVisibility(View.VISIBLE);
             btnBack.setVisibility(View.VISIBLE);
             btnDelete.setVisibility(View.VISIBLE);
+            btnSelectAll.setVisibility(View.VISIBLE);
             txtHistory.setVisibility(View.GONE);
 
-            toolbar.inflateMenu(R.menu.delete);
             position = index;
             adapter.notifyDataSetChanged();
         }

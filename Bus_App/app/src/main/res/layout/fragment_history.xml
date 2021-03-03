@@ -61,9 +61,23 @@ android:layout_height="match_parent">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/btnBack"
-                android:text="Selección: 0 elementos"
+                android:text="Selección: 0 elementos seleccionados"
                 android:textColor="@color/blue_normal"
                 android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/btn_select_All"
+                android:layout_width="23dp"
+                android:layout_height="22dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="78dp"
+                android:layout_marginRight="78dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_select_all"
+                android:tint="@color/blue_normal"
+                android:title=""
+                app:showAsAction="always" />
 
             <ImageButton
                 android:id="@+id/btn_delete"
@@ -71,10 +85,10 @@ android:layout_height="match_parent">
                 android:layout_height="22dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ic_baseline_delete_24"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_delete_24"
                 android:tint="@color/blue_normal"
                 android:title=""
                 app:showAsAction="always" />
