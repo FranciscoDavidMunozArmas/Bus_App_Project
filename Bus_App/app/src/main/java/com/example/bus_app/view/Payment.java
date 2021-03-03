@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;import android.widget.Button;
 import android.widget.TextView;
 import com.example.bus_app.R;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 public class Payment extends Fragment {
 
@@ -23,7 +24,7 @@ public class Payment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        IntentIntegrator integrator = new IntentIntegrator(this);
+        IntentIntegrator integrator = new IntentIntegrator(getActivity());
         integrator.setPrompt("Enfoca el codigo QR dentro del rectangulo");
 
         integrator.setOrientationLocked(false);
