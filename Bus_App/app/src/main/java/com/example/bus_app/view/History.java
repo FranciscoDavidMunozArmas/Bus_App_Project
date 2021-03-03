@@ -22,7 +22,7 @@ import android.view.animation.Animation;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.bus_app.R;
 
@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class History extends Fragment {
     public static History newInstance() { return new History(); }
-    RecyclerView recyclerViewRegistro;
+    /*RecyclerView recyclerViewRegistro;
     List<Register> lst;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -86,14 +86,15 @@ public class History extends Fragment {
         RegisterAdapter adapter = new RegisterAdapter(GetData());
         recyclerViewRegistro.setAdapter(adapter);
         return vista;
-    }
-    /*RecyclerView recyclerViewRegistro;
+    }*/
+    RecyclerView recyclerViewRegistro;
     Toolbar toolbar;
     TextView txtToolbar;
     ImageButton btnBack;
-    List<Register> lst;
+    ArrayList<Register> lst = new ArrayList<>();
+    TextView txtHistory;
     ArrayList<Register> selectionList = new ArrayList<>();
-    RegisterAdapter adapter = new RegisterAdapter(GetData());
+    RegisterAdapter adapter = new RegisterAdapter(GetData(), this);
     int counter = 0;
     boolean isActionMode = false;
     int position = -1;
@@ -148,14 +149,16 @@ public class History extends Fragment {
                              Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_history, container, false);
         recyclerViewRegistro = (RecyclerView) vista.findViewById(R.id.lista);
+        txtHistory = (TextView) vista.findViewById(R.id.txt_History);
+        txtHistory.setVisibility(View.VISIBLE);
 
-        toolbar = vista.findViewById(R.id.toolbar);
+        toolbar = (Toolbar) vista.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        txtToolbar = vista.findViewById(R.id.text_toolbar);
+        txtToolbar = (TextView) vista.findViewById(R.id.text_toolbar);
         txtToolbar.setVisibility(View.GONE);
 
-        btnBack = vista.findViewById(R.id.btnBack);
+        btnBack = (ImageButton) vista.findViewById(R.id.btnBack);
         btnBack.setVisibility(View.GONE);
 
         recyclerViewRegistro.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -176,6 +179,7 @@ public class History extends Fragment {
         txtToolbar.setVisibility(View.GONE);
         txtToolbar.setText("Selección: 0 elementos seleccionados");
         btnBack.setVisibility(View.GONE);
+        txtHistory.setVisibility(View.VISIBLE);
         counter = 0;
         selectionList.clear();
         toolbar.getMenu().clear();
@@ -194,6 +198,8 @@ public class History extends Fragment {
             updateToolBarText(counter);
             txtToolbar.setVisibility(View.VISIBLE);
             btnBack.setVisibility(View.VISIBLE);
+            txtHistory.setVisibility(View.GONE);
+
             toolbar.inflateMenu(R.menu.delete);
             position = index;
             adapter.notifyDataSetChanged();
@@ -251,5 +257,5 @@ public class History extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 }
