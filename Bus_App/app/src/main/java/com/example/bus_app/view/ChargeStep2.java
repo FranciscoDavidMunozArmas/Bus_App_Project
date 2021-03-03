@@ -125,7 +125,6 @@ public class ChargeStep2 extends Fragment {
         if((c1.isChecked() && c2.isChecked()) == false)
         {
             c1.setError("Seleccione una opción");
-            c2.setError("");
             return false;
         }
         return true;
