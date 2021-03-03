@@ -98,8 +98,8 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.Regist
         } else
         {
             Anim anim = new Anim(0, holder.linearLayout);
-            anim.setDuration(300);
             holder.linearLayout.setVisibility(View.GONE);
+            anim.setDuration(300);
             holder.linearLayout.setAnimation(anim);
             holder.checkBox.setChecked(false);
         }

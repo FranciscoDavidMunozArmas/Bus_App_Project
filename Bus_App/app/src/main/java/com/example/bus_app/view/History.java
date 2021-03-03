@@ -91,6 +91,7 @@ public class History extends Fragment {
     Toolbar toolbar;
     TextView txtToolbar;
     ImageButton btnBack;
+    ImageButton btnDelete;
     ArrayList<Register> lst = new ArrayList<>();
     TextView txtHistory;
     ArrayList<Register> selectionList = new ArrayList<>();
@@ -143,7 +144,6 @@ public class History extends Fragment {
         return lst;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -161,6 +161,9 @@ public class History extends Fragment {
         btnBack = (ImageButton) vista.findViewById(R.id.btnBack);
         btnBack.setVisibility(View.GONE);
 
+        btnDelete = (ImageButton) vista.findViewById(R.id.btn_delete);
+        btnDelete.setVisibility(View.GONE);
+
         recyclerViewRegistro.setLayoutManager(new LinearLayoutManager(getContext()));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerViewRegistro.getContext(),
                 DividerItemDecoration.VERTICAL);
@@ -170,15 +173,44 @@ public class History extends Fragment {
         btnBack.setOnClickListener(v->{
             clearActionMode();
         });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectionList.size() > 0){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("Está seguro que desea eliminar "+ selectionList.size() + " elementos?");
+                    builder.setTitle("Confirmar");
+                    builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            for (Register register : selectionList){
+                                lst.remove(register);
+                            }
+                            updateToolBarText(0);
+                            clearActionMode();
+                        }
+                    });
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+
         return vista;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void clearActionMode() {
         isActionMode = false;
         txtToolbar.setVisibility(View.GONE);
-        txtToolbar.setText("Selección: 0 elementos seleccionados");
+        txtToolbar.setText("0 elementos seleccionados");
         btnBack.setVisibility(View.GONE);
+        btnDelete.setVisibility(View.GONE);
         txtHistory.setVisibility(View.VISIBLE);
         counter = 0;
         selectionList.clear();
@@ -189,7 +221,6 @@ public class History extends Fragment {
     private void setSupportActionBar(Toolbar toolbar) {
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startSelection(int index){
         if(!isActionMode){
             isActionMode = true;
@@ -198,6 +229,7 @@ public class History extends Fragment {
             updateToolBarText(counter);
             txtToolbar.setVisibility(View.VISIBLE);
             btnBack.setVisibility(View.VISIBLE);
+            btnDelete.setVisibility(View.VISIBLE);
             txtHistory.setVisibility(View.GONE);
 
             toolbar.inflateMenu(R.menu.delete);
@@ -220,22 +252,21 @@ public class History extends Fragment {
 
     private void updateToolBarText(int counter) {
         if(counter==0){
-            txtToolbar.setText("Seleccion: 0 elementos seleccionados");
+            txtToolbar.setText("0 elementos seleccionados");
         }
         if(counter==1){
-            txtToolbar.setText("Seleccion: 1 elemento seleccionado");
+            txtToolbar.setText("1 elemento seleccionado");
         }
         else {
-            txtToolbar.setText("Seleccion: "+counter+" elementos seleccionados");
+            txtToolbar.setText(counter+" elementos seleccionados");
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.item_delete && selectionList.size() > 0){
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setMessage("Eliminar "+ selectionList.size() + " elemento?");
+            builder.setMessage("Está seguro que desea eliminar "+ selectionList.size() + " elementos?");
             builder.setTitle("Confirmar");
             builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
                 @Override
@@ -257,5 +288,5 @@ public class History extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }
