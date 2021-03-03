@@ -1,5 +1,7 @@
 package com.example.bus_app.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -89,11 +91,27 @@ public class ChargeStep2 extends Fragment implements TextWatcher {
             public void onClick(View v) {
                 if(validateCheckBox(debit,credit) && validateInsert(cardNumber) && validateInsert(expirationDate) && validateInsert(code) )
                 {
-                    FragmentTransaction trans = getFragmentManager().beginTransaction();
-                    trans.replace(R.id.charge_container, new ChargeStep3());
-                    trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    trans.addToBackStack(null);
-                    trans.commit();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                    alert.setMessage("¿Desea continuar?").setCancelable(false)
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    FragmentTransaction trans = getFragmentManager().beginTransaction();
+                                    trans.replace(R.id.charge_container, new ChargeStep3());
+                                    trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                    trans.addToBackStack(null);
+                                    trans.commit();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog title = alert.create();
+                    title.setTitle("Confirmacion");
+                    title.show();
                 }
 
             }
