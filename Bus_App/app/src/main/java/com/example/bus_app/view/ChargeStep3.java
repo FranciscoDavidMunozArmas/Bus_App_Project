@@ -1,7 +1,15 @@
 package com.example.bus_app.view;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -59,11 +67,26 @@ public class ChargeStep3 extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_charge_step3, container, false);
         Button back = (Button) view.findViewById(R.id.button_finish);
+        //Transaction notification
+        Context context = view.getContext();
+        initChannels(context);
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(context, "default");
+        notification.setAutoCancel(true);
+        notification.setSmallIcon(R.mipmap.ic_launcher);
+        notification.setTicker("New notification");
+        notification.setPriority(Notification.PRIORITY_HIGH);
+        notification.setWhen(System.currentTimeMillis());
+        notification.setContentTitle("Bus App");
+        notification.setContentText("Se ha acreditado $0.00 a su pasaje el dd/mm/aa por XXXXX");
+        NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        nm.notify(1,notification.build());
+        ///
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,4 +99,18 @@ public class ChargeStep3 extends Fragment {
         });
         return view;
     }
+
+    public void initChannels(Context context) {
+        if (Build.VERSION.SDK_INT < 26) {
+            return;
+        }
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel channel = new NotificationChannel("default",
+                "Channel name",
+                NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription("Channel description");
+        notificationManager.createNotificationChannel(channel);
+    }
 }
+

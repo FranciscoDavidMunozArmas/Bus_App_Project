@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.bus_app.R;
 
@@ -63,15 +64,19 @@ public class ChargeStep1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_charge_step1, container, false);
+        EditText textNumberDecimal = (EditText) view.findViewById(R.id.editTextNumberDecimal);
         Button btn = (Button) view.findViewById(R.id.button_next_1);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction trans = getFragmentManager().beginTransaction();
-                trans.replace(R.id.charge_container, new ChargeStep2());
-                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                trans.addToBackStack(null);
-                trans.commit();
+                if(validateInsert(textNumberDecimal))
+                {
+                    FragmentTransaction trans = getFragmentManager().beginTransaction();
+                    trans.replace(R.id.charge_container, new ChargeStep2());
+                    trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    trans.addToBackStack(null);
+                    trans.commit();
+                }
             }
         });
         Button back = (Button) view.findViewById(R.id.charge_btn_back1);
@@ -86,6 +91,17 @@ public class ChargeStep1 extends Fragment {
             }
         });
         return view;
+    }
+
+    private boolean validateInsert(EditText camp)
+    {
+        String c1 = camp.getText().toString();
+        if(c1.isEmpty())
+        {
+            camp.setError("Llene este campo");
+            return false;
+        }
+        return true;
     }
 
 }

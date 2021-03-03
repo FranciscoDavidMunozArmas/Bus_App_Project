@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 import com.example.bus_app.R;
 
@@ -66,15 +68,25 @@ public class ChargeStep2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_charge_step2, container, false);
+        EditText cardNumber = (EditText) view.findViewById(R.id.editTextNumber3);
+        EditText expirationDate = (EditText) view.findViewById(R.id.editTextNumber) ;
+        EditText code = (EditText) view.findViewById(R.id.editTextNumberPassword2);
+        //EditText name = (EditText) view.findViewById(R.id.name);
+        CheckBox debit = (CheckBox) view.findViewById(R.id.checkBox);
+        CheckBox credit = (CheckBox) view.findViewById(R.id.checkBox2);
         Button btn = (Button) view.findViewById(R.id.button_next_2);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction trans = getFragmentManager().beginTransaction();
-                trans.replace(R.id.charge_container, new ChargeStep3());
-                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                trans.addToBackStack(null);
-                trans.commit();
+                if(validateCheckBox(debit,credit) && validateInsert(cardNumber) && validateInsert(expirationDate) && validateInsert(code) )
+                {
+                    FragmentTransaction trans = getFragmentManager().beginTransaction();
+                    trans.replace(R.id.charge_container, new ChargeStep3());
+                    trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    trans.addToBackStack(null);
+                    trans.commit();
+                }
+
             }
         });
         Button back = (Button) view.findViewById(R.id.charge_btn_back2);
@@ -89,5 +101,33 @@ public class ChargeStep2 extends Fragment {
             }
         });
         return view;
+    }
+
+    private boolean validateInsert(EditText camp)
+    {
+        String c1 = camp.getText().toString();
+        if(c1.isEmpty())
+        {
+            camp.setError("Campo obligatorio");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateCheckBox(CheckBox c1, CheckBox c2)
+    {
+        if((c1.isChecked() && c2.isChecked()) == true)
+        {
+            c1.setError("Seleccione solo una opción");
+            c2.setError("");
+            return false;
+        }
+        if((c1.isChecked() && c2.isChecked()) == true)
+        {
+            c1.setError("Seleccione una opción");
+            c2.setError("");
+            return false;
+        }
+        return true;
     }
 }
