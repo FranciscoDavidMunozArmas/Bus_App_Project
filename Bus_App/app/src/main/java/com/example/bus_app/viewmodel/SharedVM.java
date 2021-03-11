@@ -10,6 +10,7 @@ public class SharedVM extends ViewModel {
 
     private MutableLiveData<User> user;
     private MutableLiveData<String> str;
+    private MutableLiveData<Float> amount_increase;
     private MutableLiveData<Boolean> bool;
 
     public void setUser(User user) {

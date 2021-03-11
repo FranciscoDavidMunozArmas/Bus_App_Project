@@ -48,7 +48,6 @@ public class Home extends Fragment {
         mViewModel.setActivity(getActivity());
         mViewModel.setContext(getContext());
 
-        System.out.println(getActivity().getIntent().getExtras().get("id").toString());
         mViewModel.setId(getActivity().getIntent().getExtras().get("id").toString());
 
         share.setBool(mViewModel.get_hand().getValue());

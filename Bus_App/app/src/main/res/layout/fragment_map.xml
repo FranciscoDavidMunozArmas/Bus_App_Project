@@ -36,7 +36,7 @@
                 android:visibility="gone">
 
                 <ToggleButton
-                    android:id="@+id/home_floating_cb_position"
+                    android:id="@+id/map_floating_cb_line"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textOn="@string/lines"
@@ -47,7 +47,7 @@
                     android:button="@color/toggle_selector"
                     android:buttonTint="@color/blue_normal"/>
                 <ToggleButton
-                    android:id="@+id/home_floating_cb_nfc"
+                    android:id="@+id/map_floating_cb_stop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textOn="@string/bus_stop"
@@ -57,7 +57,7 @@
                     android:background="@color/transparent"
                     android:button="@color/toggle_selector"
                     android:buttonTint="@color/blue_normal"
-                    android:layout_below="@+id/home_floating_cb_position"/>
+                    android:layout_below="@+id/map_floating_cb_line"/>
 
             </RelativeLayout>
 
