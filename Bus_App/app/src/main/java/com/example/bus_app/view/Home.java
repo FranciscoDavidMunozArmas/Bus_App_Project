@@ -51,6 +51,7 @@ public class Home extends Fragment {
         mViewModel.setId(getActivity().getIntent().getExtras().get("id").toString());
 
         share.setBool(mViewModel.get_hand().getValue());
+        share.setUser(mViewModel.getUser());
 
         ((Button) binding.getRoot().findViewById(R.id.home_btn_pay)).setOnClickListener(new View.OnClickListener() {
             @Override

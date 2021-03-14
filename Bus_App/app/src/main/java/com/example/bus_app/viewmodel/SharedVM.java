@@ -54,4 +54,18 @@ public class SharedVM extends ViewModel {
         }
         return bool;
     }
+
+    public void setAmount(float value) {
+        if(this.amount_increase == null){
+            this.amount_increase = new MutableLiveData<Float>();
+        }
+        this.amount_increase.setValue(value);
+    }
+    public LiveData<Float> getAmount() {
+        if(this.amount_increase == null){
+            this.amount_increase = new MutableLiveData<Float>();
+        }
+        return amount_increase;
+    }
+
 }

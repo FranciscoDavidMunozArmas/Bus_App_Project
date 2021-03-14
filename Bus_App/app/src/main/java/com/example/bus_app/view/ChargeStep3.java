@@ -3,7 +3,9 @@ package com.example.bus_app.view;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -12,6 +14,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.bus_app.R;
+import com.example.bus_app.model.User;
+import com.example.bus_app.ui.AlertDialogHelper;
+import com.example.bus_app.ui.ErrorMsg;
+import com.example.bus_app.util.services.UserSQL;
+import com.example.bus_app.util.table.UserTable;
+import com.example.bus_app.viewmodel.SharedVM;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +35,7 @@ import com.example.bus_app.R;
  * create an instance of this fragment.
  */
 public class ChargeStep3 extends Fragment {
-
+    private SharedVM share;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -71,6 +80,7 @@ public class ChargeStep3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        share = ViewModelProviders.of(requireActivity()).get(SharedVM.class);
         View view = inflater.inflate(R.layout.fragment_charge_step3, container, false);
         Button back = (Button) view.findViewById(R.id.button_finish);
         //Transaction notification
@@ -90,11 +100,13 @@ public class ChargeStep3 extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction trans = getFragmentManager().beginTransaction();
-                trans.replace(R.id.charge_container, new Home());
-                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                trans.addToBackStack(null);
-                trans.commit();
+                if(update(share.getUser().getValue(), share.getAmount().getValue())){
+                    FragmentTransaction trans = getFragmentManager().beginTransaction();
+                    trans.replace(R.id.charge_container, new Home());
+                    trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    trans.addToBackStack(null);
+                    trans.commit();
+                }
             }
         });
         return view;
@@ -112,5 +124,26 @@ public class ChargeStep3 extends Fragment {
         channel.setDescription("Channel description");
         notificationManager.createNotificationChannel(channel);
     }
+
+    private boolean update(User user, float amount){
+        try {
+            SQLiteDatabase db = (new UserSQL(getContext())).getReadableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(UserTable.COLUMN_NAME_MONEY, user.getMoney() + amount);
+            String selection = UserTable.COLUMN_NAME_ID + " =?";
+            String[] selectionArgs = {user.getId()};
+            System.out.println(user.getId());
+            int count = db.update(UserTable.TABLE_NAME, values, selection, selectionArgs);
+            db.close();
+            if(count != 0){
+                return true;
+            }
+            AlertDialogHelper.MsgBack(getActivity(), ErrorMsg.ERROR_TITLE, ErrorMsg.USER_DOESNT_EXIST);
+        }catch (Exception e){
+            AlertDialogHelper.MsgBack(getActivity(), ErrorMsg.SORRY_MSG, ErrorMsg.SORRY_MSG);
+        }
+        return false;
+    }
+
 }
 

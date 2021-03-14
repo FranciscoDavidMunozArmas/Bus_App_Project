@@ -22,6 +22,7 @@ public class HomeVM extends ViewModel {
 
     private Activity activity;
     private Context context;
+    private User user;
 
     public MutableLiveData<String> cash_amount;
     public MutableLiveData<String> user_name;
@@ -42,6 +43,7 @@ public class HomeVM extends ViewModel {
         user_name.setValue("User");
         user_id.setValue("12345");
         nfc.setValue(false);
+        user = new User();
     }
 
     public void setId(String id) {
@@ -67,8 +69,12 @@ public class HomeVM extends ViewModel {
                 } else {
                     this.hand.setValue(false);
                 }
-            }
 
+                user.setId("" + cursor.getInt(cursor.getColumnIndex(UserTable.COLUMN_NAME_ID)));
+                user.setName(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_NAME_USERNAME)));
+                user.setMoney(cursor.getFloat(cursor.getColumnIndex(UserTable.COLUMN_NAME_MONEY)));
+                user.setHand(this.hand.getValue());
+            }
             db.close();
             cursor.close();
         } catch (Exception e){
@@ -100,6 +106,14 @@ public class HomeVM extends ViewModel {
             this.floating_btn.setValue(false);
         }
         return  this.floating_btn;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LiveData<Boolean> get_logout(){

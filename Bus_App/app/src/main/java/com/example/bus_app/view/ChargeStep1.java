@@ -4,14 +4,17 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.bus_app.R;
+import com.example.bus_app.viewmodel.SharedVM;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +23,7 @@ import com.example.bus_app.R;
  */
 public class ChargeStep1 extends Fragment {
 
+    private SharedVM share;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,6 +67,8 @@ public class ChargeStep1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        share = ViewModelProviders.of(requireActivity()).get(SharedVM.class);
+
         View view = inflater.inflate(R.layout.fragment_charge_step1, container, false);
         EditText textNumberDecimal = (EditText) view.findViewById(R.id.editTextNumberDecimal);
         Button btn = (Button) view.findViewById(R.id.button_next_1);
@@ -71,6 +77,7 @@ public class ChargeStep1 extends Fragment {
             public void onClick(View v) {
                 if(validateInsert(textNumberDecimal))
                 {
+                    share.setAmount(Float.parseFloat(((TextView)view.findViewById(R.id.editTextNumberDecimal)).getText().toString()));
                     FragmentTransaction trans = getFragmentManager().beginTransaction();
                     trans.replace(R.id.charge_container, new ChargeStep2());
                     trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
