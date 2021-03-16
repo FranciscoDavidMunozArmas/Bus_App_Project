@@ -25,9 +25,17 @@ import com.example.bus_app.R;
 import com.example.bus_app.model.User;
 import com.example.bus_app.ui.AlertDialogHelper;
 import com.example.bus_app.ui.ErrorMsg;
+import com.example.bus_app.util.services.HistorySQL;
+import com.example.bus_app.util.services.LoginSQL;
 import com.example.bus_app.util.services.UserSQL;
+import com.example.bus_app.util.table.HistoryTable;
+import com.example.bus_app.util.table.LoginTable;
 import com.example.bus_app.util.table.UserTable;
 import com.example.bus_app.viewmodel.SharedVM;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.SimpleFormatter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,6 +109,7 @@ public class ChargeStep3 extends Fragment {
             @Override
             public void onClick(View v) {
                 if(update(share.getUser().getValue(), share.getAmount().getValue())){
+                    create(share.getUser().getValue(), share.getAmount().getValue(), HistoryTable.METHOD_1);
                     FragmentTransaction trans = getFragmentManager().beginTransaction();
                     trans.replace(R.id.charge_container, new Home());
                     trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -125,6 +134,22 @@ public class ChargeStep3 extends Fragment {
         notificationManager.createNotificationChannel(channel);
     }
 
+
+    private void create(User user, float amount, String type){
+        try {
+            SQLiteDatabase db = (new HistorySQL(getContext())).getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(HistoryTable.COLUMN_NAME_USER, user.getId());
+            values.put(HistoryTable.COLUMN_NAME_DESCRIPTION, type);
+            values.put(HistoryTable.COLUMN_NAME_AMOUNT, amount);
+            values.put(HistoryTable.COLUMN_NAME_DATE, ((new SimpleDateFormat("dd/mm/yyyy")).format((new Date()).getTime())).toString());
+            long newRowId = db.insert(HistoryTable.TABLE_NAME, null, values);
+            System.out.println(newRowId);
+            db.close();
+        }catch (Exception e){
+            AlertDialogHelper.MsgBack(getActivity(), ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
+        }
+    }
     private boolean update(User user, float amount){
         try {
             SQLiteDatabase db = (new UserSQL(getContext())).getReadableDatabase();

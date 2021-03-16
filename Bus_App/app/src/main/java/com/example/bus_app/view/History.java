@@ -2,6 +2,8 @@ package com.example.bus_app.view;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -10,10 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.view.ActionMode;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,68 +29,20 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.bus_app.R;
+import com.example.bus_app.model.User;
+import com.example.bus_app.ui.AlertDialogHelper;
+import com.example.bus_app.ui.ErrorMsg;
+import com.example.bus_app.util.services.HistorySQL;
+import com.example.bus_app.util.services.UserSQL;
+import com.example.bus_app.util.table.HistoryTable;
+import com.example.bus_app.util.table.UserTable;
+import com.example.bus_app.viewmodel.SharedVM;
 
 import java.util.ArrayList;
 import java.util.List;
 public class History extends Fragment {
     public static History newInstance() { return new History(); }
-    /*RecyclerView recyclerViewRegistro;
-    List<Register> lst;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public History() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    private List<Register> GetData() {
-        lst = new ArrayList<>();
-        lst.add(new Register(1,"Recarga Banco", 5.00, "05/01/2021"));
-        lst.add(new Register(2,"Recarga Tienda", 2.00, "06/01/2021"));
-        lst.add(new Register(3,"Recarga Tienda", 3.00, "07/01/2021"));
-        lst.add(new Register(4,"Pago", 0.25, "08/01/2021"));
-        lst.add(new Register(5,"Recarga Tienda", 1.00, "09/01/2021"));
-        lst.add(new Register(6,"Pago", 0.25, "10/01/2021"));
-        lst.add(new Register(7,"Recarga Banco", 5.00, "11/01/2021"));
-        lst.add(new Register(1,"Recarga Banco", 10.25, "12/01/2021"));
-        lst.add(new Register(2,"Recarga Tienda", 5.15, "13/01/2021"));
-        lst.add(new Register(3,"Recarga Tienda", 3.10, "14/01/2021"));
-        lst.add(new Register(4,"Pago", 0.25, "15/01/2021"));
-        lst.add(new Register(5,"Recarga Tienda", 0.50, "16/01/2021"));
-        lst.add(new Register(6,"Pago", 0.25, "17/01/2021"));
-        lst.add(new Register(7,"Recarga Banco", 5.00, "18/01/2021"));
-        return lst;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View vista = inflater.inflate(R.layout.fragment_history, container, false);
-        recyclerViewRegistro = (RecyclerView) vista.findViewById(R.id.lista);
-        recyclerViewRegistro.setLayoutManager(new LinearLayoutManager(getContext()));
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerViewRegistro.getContext(),
-                DividerItemDecoration.VERTICAL);
-        recyclerViewRegistro.addItemDecoration(dividerItemDecoration);
-        RegisterAdapter adapter = new RegisterAdapter(GetData());
-        recyclerViewRegistro.setAdapter(adapter);
-        return vista;
-    }*/
+    private SharedVM share;
     RecyclerView recyclerViewRegistro;
     Toolbar toolbar;
     TextView txtToolbar;
@@ -96,7 +52,7 @@ public class History extends Fragment {
     ArrayList<Register> lst = new ArrayList<>();
     TextView txtHistory;
     ArrayList<Register> selectionList = new ArrayList<>();
-    RegisterAdapter adapter = new RegisterAdapter(GetData(), this);
+    RegisterAdapter adapter;
     int counter = 0;
     boolean isActionMode = false;
     int position = -1;
@@ -126,28 +82,39 @@ public class History extends Fragment {
         }
     }
 
-    private List<Register> GetData() {
+    private List<Register> GetData(User user) {
         lst = new ArrayList<>();
-        lst.add(new Register(1,"Recarga Banco", 5.00, "05/01/2021"));
-        lst.add(new Register(2,"Recarga Tienda", 2.00, "06/01/2021"));
-        lst.add(new Register(3,"Recarga Tienda", 3.00, "07/01/2021"));
-        lst.add(new Register(4,"Pago", 0.25, "08/01/2021"));
-        lst.add(new Register(5,"Recarga Tienda", 1.00, "09/01/2021"));
-        lst.add(new Register(6,"Pago", 0.25, "10/01/2021"));
-        lst.add(new Register(7,"Recarga Banco", 5.00, "11/01/2021"));
-        lst.add(new Register(1,"Recarga Banco", 10.25, "12/01/2021"));
-        lst.add(new Register(2,"Recarga Tienda", 5.15, "13/01/2021"));
-        lst.add(new Register(3,"Recarga Tienda", 3.10, "14/01/2021"));
-        lst.add(new Register(4,"Pago", 0.25, "15/01/2021"));
-        lst.add(new Register(5,"Recarga Tienda", 0.50, "16/01/2021"));
-        lst.add(new Register(6,"Pago", 0.25, "17/01/2021"));
-        lst.add(new Register(7,"Recarga Banco", 5.00, "18/01/2021"));
+
+        String[] projection = {HistoryTable.COLUMN_NAME_ID, HistoryTable.COLUMN_NAME_DESCRIPTION, HistoryTable.COLUMN_NAME_AMOUNT, HistoryTable.COLUMN_NAME_DATE};
+        String selection = HistoryTable.COLUMN_NAME_USER + " =?";
+        String[] selectionArgs = {user.getId()};
+
+        try {
+            SQLiteDatabase db = (new HistorySQL(getContext())).getReadableDatabase();
+            Cursor cursor = db.query(HistoryTable.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+            cursor.moveToFirst();
+            System.out.println(cursor.getCount());
+            if(cursor.getCount() != 0){
+                do {
+                    lst.add(new Register(cursor.getInt(cursor.getColumnIndex(HistoryTable.COLUMN_NAME_ID)),
+                            cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_NAME_DESCRIPTION)),
+                            Double.parseDouble(cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_NAME_AMOUNT))),
+                            cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_NAME_DATE))));
+                }while(cursor.moveToNext());
+            }
+            db.close();
+            cursor.close();
+        }catch (Exception e){
+            AlertDialogHelper.MsgBack(getActivity(), ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
+        }
         return lst;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        share = ViewModelProviders.of(requireActivity()).get(SharedVM.class);
+        adapter = new RegisterAdapter(GetData(share.getUser().getValue()), this);
         View vista = inflater.inflate(R.layout.fragment_history, container, false);
         recyclerViewRegistro = (RecyclerView) vista.findViewById(R.id.lista);
         txtHistory = (TextView) vista.findViewById(R.id.txt_History);
@@ -193,6 +160,7 @@ public class History extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             for (Register register : selectionList){
+                                delete_entry(register);
                                 lst.remove(register);
                             }
                             updateToolBarText(0);
@@ -252,7 +220,6 @@ public class History extends Fragment {
             btnDelete.setVisibility(View.VISIBLE);
             btnSelectAll.setVisibility(View.VISIBLE);
             txtHistory.setVisibility(View.GONE);
-
             position = index;
             adapter.notifyDataSetChanged();
         }
@@ -279,6 +246,19 @@ public class History extends Fragment {
         }
         else {
             txtToolbar.setText(counter+" elementos seleccionados");
+        }
+    }
+
+    private void delete_entry(Register user){
+        String selection = HistoryTable.COLUMN_NAME_ID + " =?";
+        String[] selectionArgs = {"" + user.getId()};
+
+        try {
+            SQLiteDatabase db = (new HistorySQL(getContext())).getReadableDatabase();
+            db.delete(HistoryTable.TABLE_NAME, selection, selectionArgs);
+            db.close();
+        }catch (Exception e){
+            AlertDialogHelper.MsgBack(getActivity(), ErrorMsg.SORRY_TITLE, ErrorMsg.SORRY_MSG);
         }
     }
 

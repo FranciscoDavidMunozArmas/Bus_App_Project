@@ -19,52 +19,6 @@ import com.example.bus_app.R;
 
 import java.util.List;
 
-/*public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.RegisterViewHolder> {
-
-    List<Register> lst;
-
-    public RegisterAdapter(List<Register> lst) {
-        this.lst = lst;
-    }
-
-    @Override
-    public RegisterAdapter.RegisterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_elements, null, false);
-        return new RegisterViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull RegisterAdapter.RegisterViewHolder holder, int position) {
-        holder.setData(lst.get(position));
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public int getItemCount() {
-        return lst.size();
-    }
-
-    public class RegisterViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTransaction, txtAmount, txtDate;
-        public RegisterViewHolder(@NonNull View itemView) {
-            super(itemView);
-            txtTransaction = (TextView) itemView.findViewById(R.id.transaction);
-            txtAmount = (TextView) itemView.findViewById(R.id.amount);
-            txtDate = (TextView) itemView.findViewById(R.id.date);
-        }
-
-        public void setData(Register register) {
-            txtTransaction.setText(register.rtransaction);
-            txtAmount.setText("$"+register.ramount);
-            txtDate.setText(register.rdate);
-        }
-    }
-}*/
-
 public class RegisterAdapter extends RecyclerView.Adapter<RegisterAdapter.RegisterViewHolder> {
 
     List<Register> lst;
